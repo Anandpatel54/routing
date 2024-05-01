@@ -1,5 +1,5 @@
 import axios from "../helpers/axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const Home = () => {
   const [users, setusers] = useState([]);
   const getUsers = async () => {
@@ -22,12 +22,13 @@ const Home = () => {
     ));
   }
 
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   return (
     <div className="mt-[80px]">
       <h1 className="text-2xl font-extrabold">Homepage</h1>
-      <button className="bg-green-500 py-2 px-5 mt-3" onClick={getUsers}>
-        Get Users
-      </button>
       <div className="flex flex-wrap mt-3">{renderusers}</div>
     </div>
   );
